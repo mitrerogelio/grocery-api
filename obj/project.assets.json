@@ -224,19 +224,19 @@
     ]
   },
   "packageFolders": {
-    "/home/rogeliocodes/.nuget/packages/": {}
+    "/Users/rogelio/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/rogeliocodes/projects/grocery-api/api/api.csproj",
+      "projectUniqueName": "/Users/rogelio/Documents/projects/grocery/api.csproj",
       "projectName": "api",
-      "projectPath": "/home/rogeliocodes/projects/grocery-api/api/api.csproj",
-      "packagesPath": "/home/rogeliocodes/.nuget/packages/",
-      "outputPath": "/home/rogeliocodes/projects/grocery-api/api/obj/",
+      "projectPath": "/Users/rogelio/Documents/projects/grocery/api.csproj",
+      "packagesPath": "/Users/rogelio/.nuget/packages/",
+      "outputPath": "/Users/rogelio/Documents/projects/grocery/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/rogeliocodes/.nuget/NuGet/NuGet.Config"
+        "/Users/rogelio/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -284,7 +284,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
       }
     }
   }
