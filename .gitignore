@@ -1,0 +1,31 @@
+# Rider
+.idea/
+
+# Binaries
+/bin/
+/obj/
+
+# Visual Studio temp files
+*.csproj.user
+
+# Visual Studio cache
+*.dll
+*.exe
+
+# Visual Studio files
+*.suo
+*.sln
+
+# Windows temp files
+Thumbs.db
+Desktop.ini
+
+# macOS temp files
+.DS_Store
+
+# Others
+*.pdb
+*.mdb
+
+# JetBrains Rider logs
+*.log
