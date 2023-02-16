@@ -9,20 +9,23 @@ namespace grocery_api.Controllers;
 [Route("[controller]")]
 public class PizzaController : ControllerBase
 {
-    public PizzaController()
+    private readonly IPizzaService _pizzaService;
+
+    public PizzaController(IPizzaService pizzaService)
     {
+        _pizzaService = pizzaService;
     }
 
     // GET all pizzas
     [HttpGet]
     public ActionResult<List<Pizza>> GetAll() =>
-        PizzaService.GetAll();
+        _pizzaService.GetAll();
 
     // GET single pizza by ID
     [HttpGet("{id}")]
     public ActionResult<Pizza> Get(int id)
     {
-        var pizza = PizzaService.Get(id);
+        var pizza = _pizzaService.Get(id);
 
         if(pizza == null)
             return NotFound();
@@ -34,7 +37,7 @@ public class PizzaController : ControllerBase
     [HttpPost]
     public IActionResult Create(Pizza pizza)
     {            
-        PizzaService.Add(pizza);
+        _pizzaService.Add(pizza);
         return CreatedAtAction(nameof(Get), new { id = pizza.Id }, pizza);
     }
 
@@ -45,11 +48,11 @@ public class PizzaController : ControllerBase
         if (id != pizza.Id)
             return BadRequest();
            
-        var existingPizza = PizzaService.Get(id);
+        var existingPizza = _pizzaService.Get(id);
         if(existingPizza is null)
             return NotFound();
    
-        PizzaService.Update(pizza);           
+        _pizzaService.Update(pizza);           
    
         return NoContent();
     }
@@ -58,12 +61,12 @@ public class PizzaController : ControllerBase
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
-        var pizza = PizzaService.Get(id);
+        var pizza = _pizzaService.Get(id);
    
         if (pizza is null)
             return NotFound();
        
-        PizzaService.Delete(id);
+        _pizzaService.Delete(id);
    
         return NoContent();
     }
