@@ -1,20 +1,26 @@
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using grocery_api.Models;
+using grocery_api.Data;
 
 namespace grocery_api.Services;
 
 public interface IPizzaService
 {
-    List<Pizza> GetAll();
-    Pizza? Get(int id);
+    IEnumerable<Pizza> GetAll();
+    Pizza? GetById(int id);
     void Add(Pizza pizza);
     void Delete(int id);
     void Update(Pizza pizza);
 }
 public class PizzaService : IPizzaService
 {
+    private readonly PizzaContext _context;
+    public PizzaService(PizzaContext context)
+    {
+        _context = context;
+    }
     private static List<Pizza> Pizzas { get; }
-    private static int nextId = 3;
+    private static int _nextId = 3;
 
     static PizzaService()
     {
@@ -32,19 +38,24 @@ public class PizzaService : IPizzaService
         };
     }
 
-    public List<Pizza> GetAll() => Pizzas;
+    public IEnumerable<Pizza> GetAll()
+    {
+        return _context.Pizzas
+            .AsNoTracking()
+            .ToList();
+    }
 
-    public Pizza? Get(int id) => Pizzas.FirstOrDefault(p => p.Id == id);
+    public Pizza? GetById(int id) => Pizzas.FirstOrDefault(p => p.Id == id);
 
     public void Add(Pizza pizza)
     {
-        pizza.Id = nextId++;
+        pizza.Id = _nextId++;
         Pizzas.Add(pizza);
     }
 
     public void Delete(int id)
     {
-        var pizza = Get(id);
+        var pizza = GetById(id);
         if(pizza is null)
             return;
 

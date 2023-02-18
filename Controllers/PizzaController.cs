@@ -18,14 +18,21 @@ public class PizzaController : ControllerBase
 
     // GET all pizzas
     [HttpGet]
-    public ActionResult<List<Pizza>> GetAll() =>
-        _pizzaService.GetAll();
+    public ActionResult<IEnumerable<Pizza>> GetAll()
+    {
+        var pizzas = _pizzaService.GetAll();
+        if (pizzas == null)
+        {
+            return NotFound();
+        }
+        return Ok(pizzas);
+    }
 
     // GET single pizza by ID
     [HttpGet("{id}")]
-    public ActionResult<Pizza> Get(int id)
+    public ActionResult<Pizza> GetById(int id)
     {
-        var pizza = _pizzaService.Get(id);
+        var pizza = _pizzaService.GetById(id);
 
         if(pizza == null)
             return NotFound();
@@ -38,7 +45,7 @@ public class PizzaController : ControllerBase
     public IActionResult Create(Pizza pizza)
     {            
         _pizzaService.Add(pizza);
-        return CreatedAtAction(nameof(Get), new { id = pizza.Id }, pizza);
+        return CreatedAtAction(nameof(GetById), new { id = pizza.Id }, pizza);
     }
 
     // PUT action
@@ -48,7 +55,7 @@ public class PizzaController : ControllerBase
         if (id != pizza.Id)
             return BadRequest();
            
-        var existingPizza = _pizzaService.Get(id);
+        var existingPizza = _pizzaService.GetById(id);
         if(existingPizza is null)
             return NotFound();
    
@@ -61,7 +68,7 @@ public class PizzaController : ControllerBase
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
-        var pizza = _pizzaService.Get(id);
+        var pizza = _pizzaService.GetById(id);
    
         if (pizza is null)
             return NotFound();
