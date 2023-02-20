@@ -11,4 +11,6 @@ public class Topping
     public decimal calories { get; set; }
     [JsonIgnore]
     public ICollection<Pizza>? Pizzas { get; set; }
+
+    public int Calories { get; set; }
 }

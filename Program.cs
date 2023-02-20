@@ -33,5 +33,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 // Creating database if none exists (CreateDbIfNotExists):
+app.CreateDbIfNotExists();
 
 app.Run();

@@ -44,7 +44,7 @@ public class PizzaController : ControllerBase
     [HttpPost]
     public IActionResult Create(Pizza pizza)
     {            
-        _pizzaService.Add(pizza);
+        _pizzaService.Create(pizza);
         return CreatedAtAction(nameof(GetById), new { id = pizza.Id }, pizza);
     }
 
