@@ -29,7 +29,7 @@ public class PizzaController : ControllerBase
     }
 
     // GET single pizza by ID
-    [HttpGet("{id}")]
+    [HttpGet("{id:int}")]
     public ActionResult<Pizza> GetById(int id)
     {
         var pizza = _pizzaService.GetById(id);

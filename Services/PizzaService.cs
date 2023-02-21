@@ -20,23 +20,7 @@ public class PizzaService : IPizzaService
         _context = context;
     }
     private static List<Pizza> Pizzas { get; }
-    private static int _nextId = 3;
-
-    static PizzaService()
-    {
-        Pizzas = new List<Pizza>
-        {
-            new Pizza { Id = 1, Name = "Classic Italian", IsGlutenFree = false },
-            new Pizza { Id = 2, Name = "Veggie", IsGlutenFree = true },
-            new Pizza { Id = 3, Name = "Margherita", IsGlutenFree = false },
-            new Pizza { Id = 4, Name = "Pepperoni", IsGlutenFree = false },
-            new Pizza { Id = 5, Name = "Hawaiian", IsGlutenFree = false },
-            new Pizza { Id = 6, Name = "Meat Lovers", IsGlutenFree = false },
-            new Pizza { Id = 7, Name = "BBQ Chicken", IsGlutenFree = false },
-            new Pizza { Id = 8, Name = "Mushroom and Olive", IsGlutenFree = true },
-            new Pizza { Id = 9, Name = "Spinach and Feta", IsGlutenFree = true }
-        };
-    }
+    
 
     public IEnumerable<Pizza> GetAll()
     {
