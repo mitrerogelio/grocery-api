@@ -28,7 +28,10 @@ namespace grocery_api.Data
                 new Pizza
                     { 
                         Name = "Meat Lovers", 
-                        Sauce = tomatoSauce, 
+                        Sauces = new List<Sauce>
+                        {
+                            tomatoSauce
+                        }, 
                         Toppings = new List<Topping>
                             {
                                 pepperoniTopping, 
@@ -40,7 +43,10 @@ namespace grocery_api.Data
                 new Pizza
                     { 
                         Name = "Hawaiian", 
-                        Sauce = tomatoSauce, 
+                        Sauces = new List<Sauce>
+                        {
+                            tomatoSauce
+                        }, 
                         Toppings = new List<Topping>
                             {
                                 pineappleTopping, 
@@ -50,7 +56,10 @@ namespace grocery_api.Data
                 new Pizza
                     { 
                         Name="Alfredo Chicken", 
-                        Sauce = alfredoSauce, 
+                        Sauces = new List<Sauce>
+                        {
+                            alfredoSauce
+                        }, 
                         Toppings = new List<Topping>
                             {
                                 chickenTopping

@@ -25,6 +25,8 @@ public class PizzaService : IPizzaService
     public IEnumerable<Pizza> GetAll()
     {
         return _context.Pizzas
+            .Include(p => p.Toppings)
+            .Include(p => p.Sauces)
             .AsNoTracking()
             .ToList();
     }
@@ -33,7 +35,7 @@ public class PizzaService : IPizzaService
     {
         return _context.Pizzas
             .Include(p => p.Toppings)
-            .Include(p => p.Sauce)
+            .Include(p => p.Sauces)
             .AsNoTracking()
             .SingleOrDefault(p => p.Id == id);
     }
@@ -63,42 +65,5 @@ public class PizzaService : IPizzaService
             return;
 
         Pizzas[index] = pizza;
-    }
-    
-    // Update Sauce
-    public void UpdateSauce(int pizzaId, int sauceId)
-    {
-        var pizzaToUpdate = _context.Pizzas.Find(pizzaId);
-        var sauceToUpdate = _context.Sauces.Find(sauceId);
-
-        if (pizzaToUpdate is null || sauceToUpdate is null)
-        {
-            throw new InvalidOperationException("Pizza or sauce does not exist");
-        }
-
-        pizzaToUpdate.Sauce = sauceToUpdate;
-
-        _context.SaveChanges();
-    }
-    
-    // Add Topping
-    public void AddTopping(int pizzaId, int toppingId)
-    {
-        var pizzaToUpdate = _context.Pizzas.Find(pizzaId);
-        var toppingToAdd = _context.Toppings.Find(toppingId);
-
-        if (pizzaToUpdate is null || toppingToAdd is null)
-        {
-            throw new InvalidOperationException("Pizza or topping does not exist");
-        }
-
-        if(pizzaToUpdate.Toppings is null)
-        {
-            pizzaToUpdate.Toppings = new List<Topping>();
-        }
-
-        pizzaToUpdate.Toppings.Add(toppingToAdd);
-
-        _context.SaveChanges();
     }
 }

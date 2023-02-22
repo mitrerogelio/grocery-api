@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-namespace  grocery_api.Models;
+namespace grocery_api.Models;
 
 public class Topping
 {
